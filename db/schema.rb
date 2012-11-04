@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121104041617) do
+ActiveRecord::Schema.define(:version => 20121104061732) do
 
   create_table "organizations", :force => true do |t|
     t.string   "name",          :null => false
@@ -20,17 +20,21 @@ ActiveRecord::Schema.define(:version => 20121104041617) do
     t.integer  "created_by_id", :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "short_name"
+    t.string   "slogan"
   end
 
+  add_index "organizations", ["short_name"], :name => "index_organizations_on_short_name", :unique => true
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug"
 
   create_table "publications", :force => true do |t|
-    t.integer  "report_id",  :null => false
-    t.string   "name",       :null => false
-    t.string   "slug",       :null => false
-    t.string   "url",        :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "report_id",   :null => false
+    t.string   "name",        :null => false
+    t.string   "slug",        :null => false
+    t.string   "url",         :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
   end
 
   add_index "publications", ["report_id"], :name => "index_publications_on_report_id"
@@ -41,7 +45,9 @@ ActiveRecord::Schema.define(:version => 20121104041617) do
     t.string   "name",            :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.string   "url"
+    t.string   "url",             :null => false
+    t.text     "description"
+    t.string   "slug",            :null => false
   end
 
   add_index "reports", ["created_by_id"], :name => "index_reports_on_created_by_id"

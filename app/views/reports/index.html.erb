@@ -6,6 +6,9 @@
 
 <ul>
   <% @reports.each do |report| %>
-    <li><%= report.name %>
+    <li><%= link_to report.name, report_path(report) %>
+      <% if report.organization %>
+        by <%= link_to report.organization.slug_name, organization_path(report.organization) %>
+      <% end %>
   <% end %>
 </ul>

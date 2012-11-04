@@ -16,3 +16,4 @@
 
 //= require modal
 //= require submit
+//= require submit_on_change

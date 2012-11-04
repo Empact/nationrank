@@ -50,6 +50,9 @@ NationRank::Application.routes.draw do
   resources :users, only: [:new, :create]
   resources :report_submissions, only: [:new, :create]
   resources :reports, only: :index
+  resources :organizations, only: [:new, :create, :show]
+
+  resources :reports, only: :show, path: ''
 
   root :to => 'welcome#index'
 

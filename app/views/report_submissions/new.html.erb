@@ -6,22 +6,29 @@
 
 <p>By filling out the below and submitting an existing report, you can help us to clarify the lens.</p>
 
-<%= simple_form_for @report, html: {class: 'form-horizontal'} do |f| %>
-  <%= f.fields_for :organization do |org_fields| %>
+<% if @organization %>
+  <%= simple_form_for @report, url: report_submissions_path, html: {class: 'form-horizontal'} do |f| %>
     <p><strong>1) Publishing Organization</strong> - this is the organization that published the report in question</p>
-    <%= org_fields.input :name %>
-    <%= org_fields.input :url %>
+    <%= link_to @organization.name, organization_path(@organization) %>
+    <%= f.hidden_field :organization_id %>
+
+    <p><strong>2) The Report Series</strong> - this is the series of reports this report is published under</p>
+
+    <%= f.input :name %>
+    <%= f.input :url %>
+    <%= f.input :description %>
+
+    <div class="form-actions">
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
   <% end %>
+<% else %>
+  <%= simple_form_for @report, url: new_report_submission_path, method: :get, html: {class: 'form-horizontal', 'data-behavior' => 'submit_on_change'} do |f| %>
+    <p><strong>1) Publishing Organization</strong> - this is the organization that published the report in question</p>
+    <%= f.collection_select :organization_id, Organization.all, :id, :name, include_blank: true %>
 
-  <p><strong>2) The Report Series</strong> - this is the series of reports this report is published under</p>
+    or
 
-  <%= f.input :name %>
-  <%= f.input :url %>
-
-  <%= f.fields_for :publications do |publication_fields| %>
-    <p><strong>3) The Report Publication</strong> - this is the specific report itself</p>
-
-    <%= publication_fields.input :name %>
-    <%= publication_fields.input :url %>
+    <%= link_to 'Create a new Organization', new_organization_path(return_to: new_report_submission_path), 'data-behavior' => 'modal' %>
   <% end %>
 <% end %>

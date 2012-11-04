@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1><%= @organization.name %> <small><%= @organization.slogan %></small></h1>
+</div>
+
+<h2>Published <%= pluralize(@reports.size, 'report') %></h2>
+<ul>
+  <% @reports.each do |report| %>
+    <li><%= link_to report.name, report_path(report) %></li>
+  <% end %>
+</ul>
+
+<p><%= link_to 'Submit another report', new_report_submission_path(report: {organization_id: @organization.id}) %></p>

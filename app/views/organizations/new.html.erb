@@ -1,0 +1,11 @@
+<% content_for :modal_header do %>
+  Create an Organization
+<% end %>
+
+<%= simple_form_for @organization, html: {id: dom_id(@organization, :create)} do |f| %>
+  <%= render 'organizations/fields', f: f %>
+<% end %>
+
+<% content_for :modal_footer do %>
+  <%= submit_form_button 'Create Organization', dom_id(@organization, :create) %>
+<% end %>
