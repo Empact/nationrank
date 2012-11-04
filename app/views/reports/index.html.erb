@@ -2,6 +2,8 @@
   <h1>Reports</h1>
 </div>
 
+<p>Explore reports below, or help us out by <%= link_to 'submitting an existing report', new_report_submission_path %>.</p>
+
 <ul>
   <% @reports.each do |report| %>
     <li><%= report.name %>

@@ -48,6 +48,7 @@ NationRank::Application.routes.draw do
 
   resource :user_session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]
+  resources :report_submissions, only: [:new, :create]
   resources :reports, only: :index
 
   root :to => 'welcome#index'

@@ -1,0 +1,27 @@
+<div class="page-header">
+  <h1>Submit a Report</h1>
+</div>
+
+<p>Many organizations have released national indicies of one sort or other over the years. It will take a while to gather them up, but doing so gives us a clearer picture of how the world is and has been.</p>
+
+<p>By filling out the below and submitting an existing report, you can help us to clarify the lens.</p>
+
+<%= simple_form_for @report, html: {class: 'form-horizontal'} do |f| %>
+  <%= f.fields_for :organization do |org_fields| %>
+    <p><strong>1) Publishing Organization</strong> - this is the organization that published the report in question</p>
+    <%= org_fields.input :name %>
+    <%= org_fields.input :url %>
+  <% end %>
+
+  <p><strong>2) The Report Series</strong> - this is the series of reports this report is published under</p>
+
+  <%= f.input :name %>
+  <%= f.input :url %>
+
+  <%= f.fields_for :publications do |publication_fields| %>
+    <p><strong>3) The Report Publication</strong> - this is the specific report itself</p>
+
+    <%= publication_fields.input :name %>
+    <%= publication_fields.input :url %>
+  <% end %>
+<% end %>
