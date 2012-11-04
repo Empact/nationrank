@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Nation < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged

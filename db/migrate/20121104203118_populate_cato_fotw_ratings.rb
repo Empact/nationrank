@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class PopulateCatoFotwRatings < ActiveRecord::Migration
   def up
     Rating.delete_all
