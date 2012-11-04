@@ -53,8 +53,9 @@ NationRank::Application.routes.draw do
   resources :organizations, only: [:new, :create, :show]
 
   resources :reports, only: :show, path: '' do
-    resources :publications, only: [:new, :create, :edit, :update],
-      controller: 'reports/publications'
+    resources :publications, only: [:new, :create, :show], controller: 'reports/publications' do
+      resources :ratings, only: [:new, :create], controller: 'reports/publications/ratings'
+    end
   end
 
   root :to => 'welcome#index'

@@ -5,7 +5,6 @@
 <h2><%= pluralize(@report.publications.size, 'publication') %></h2>
 <ul>
   <% @report.publications.each do |publication| %>
-    <li><%= publication.name %> -
-      <%= link_to 'edit', edit_report_publication_path(@report, publication) %></li>
+    <li><%= link_to publication.name, report_publication_path(@report, publication) %></li>
   <% end %>
 </ul>

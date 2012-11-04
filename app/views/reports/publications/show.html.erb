@@ -1,0 +1,13 @@
+<%= render 'reports/publications/header', publication: @publication %>
+
+<% if @publication.url %>
+  <%= link_to 'source', @publication.url || @publication.report.url %>
+<% end %>
+
+<ol>
+<% @publication.ratings.by_rank.each do |rating| %>
+  <li><%= rating.nation.name %> <%= rating.score %></li>
+<% end %>
+</ol>
+
+<%= link_to 'Add a Rating', new_report_publication_rating_path(@report, @publication), 'data-behavior' => 'modal' %>

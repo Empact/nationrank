@@ -29,6 +29,7 @@ gem 'foreigner'
 gem 'sorcery'
 gem 'strong_parameters'
 gem 'simple_form'
+gem 'country-select'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

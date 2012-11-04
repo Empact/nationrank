@@ -1,0 +1,16 @@
+<% content_for :modal_header do %>
+  Add a Ranking
+<% end %>
+
+<%= simple_form_for [@report, @publication, @rating] do |f| %>
+  <%= f.input :nation_name, as: :country %>
+  <%= f.input :score, wrapper: :append do %>
+    <%= f.number_field :score %>
+    <span class="add-on">%</span>
+  <% end %>
+  <%= f.input :rank %>
+<% end %>
+
+<% content_for :modal_footer do %>
+  <%= submit_form_button 'Create', @rating %>
+<% end %>

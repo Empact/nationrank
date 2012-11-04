@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121104184612) do
+ActiveRecord::Schema.define(:version => 20121104203118) do
+
+  create_table "nations", :force => true do |t|
+    t.string   "name",       :null => false
+    t.string   "slug",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "nations", ["name"], :name => "index_nations_on_name", :unique => true
+  add_index "nations", ["slug"], :name => "index_nations_on_slug", :unique => true
 
   create_table "organizations", :force => true do |t|
     t.string   "name",          :null => false
@@ -40,6 +50,17 @@ ActiveRecord::Schema.define(:version => 20121104184612) do
 
   add_index "publications", ["report_id"], :name => "index_publications_on_report_id"
 
+  create_table "ratings", :force => true do |t|
+    t.decimal  "score",          :precision => 13, :scale => 3, :null => false
+    t.integer  "rank",                                          :null => false
+    t.integer  "nation_id",                                     :null => false
+    t.integer  "publication_id",                                :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
+  add_index "ratings", ["publication_id", "nation_id"], :name => "index_rankings_on_publication_id_and_nation_id", :unique => true
+
   create_table "reports", :force => true do |t|
     t.integer  "organization_id"
     t.integer  "created_by_id",   :null => false
@@ -66,5 +87,8 @@ ActiveRecord::Schema.define(:version => 20121104184612) do
   add_foreign_key "organizations", "users", :name => "organizations_created_by_id_fk", :column => "created_by_id"
 
   add_foreign_key "publications", "reports", :name => "publications_report_id_fk"
+
+  add_foreign_key "ratings", "nations", :name => "rankings_nation_id_fk"
+  add_foreign_key "ratings", "publications", :name => "rankings_publication_id_fk"
 
 end

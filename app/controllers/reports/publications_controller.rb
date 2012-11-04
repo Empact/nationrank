@@ -1,5 +1,5 @@
 class Reports::PublicationsController < ApplicationController
-  before_filter :require_login
+  before_filter :require_login, only: [:new, :create]
   before_filter :load_report
 
   def new
@@ -17,11 +17,8 @@ class Reports::PublicationsController < ApplicationController
     end
   end
 
-  def edit
+  def show
     @publication = @report.publications.find(params[:id])
-  end
-
-  def update
   end
 
   private
