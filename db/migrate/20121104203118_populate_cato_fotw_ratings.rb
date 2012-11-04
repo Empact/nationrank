@@ -4,8 +4,6 @@ class PopulateCatoFotwRatings < ActiveRecord::Migration
   def up
     Rating.delete_all
     Publication.delete_all
-    remove_column :publications, :created_by_id
-    remove_column :ratings, :created_by_id
     add_column :publications, :created_by_id, :integer, null: false
     add_column :ratings, :created_by_id, :integer, null: false
     add_foreign_key :publications, :users, column: :created_by_id
