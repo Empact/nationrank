@@ -3,10 +3,8 @@
 <% end %>
 
 <%= form_tag user_session_path, class: 'form', id: 'sign_in' do %>
-  <%= label_tag :username %>
-  <%= text_field_tag :username %>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
+  <%= text_field_tag :username, nil, placeholder: 'Username' %>
+  <%= password_field_tag :password, nil, placeholder: 'Password' %>
 <% end %>
 
 <% content_for :modal_footer do %>
