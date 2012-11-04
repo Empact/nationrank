@@ -1,0 +1,14 @@
+<% content_for :modal_header do %>
+  Sign In
+<% end %>
+
+<%= form_tag user_session_path, class: 'form', id: 'sign_in' do %>
+  <%= label_tag :username %>
+  <%= text_field_tag :username %>
+  <%= label_tag :password %>
+  <%= password_field_tag :password %>
+<% end %>
+
+<% content_for :modal_footer do %>
+  <%= submit_form_button 'Sign In', 'sign_in' %>
+<% end %>

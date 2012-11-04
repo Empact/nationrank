@@ -2,8 +2,7 @@
 <html>
 <head lang="en">
   <title>NationRank</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -15,11 +14,22 @@
       <ul class="nav">
         <li><%= link_to 'Reports', reports_path %></li>
       </ul>
+      <ul class="nav pull-right">
+        <li><% if current_user %>
+            <%= current_user.username %>
+          <% else %>
+            <%= link_to 'Sign In', new_user_session_path, 'data-behavior' => 'modal' %>
+         <% end %></li>
+      </ul>
     </div>
   </div>
 </div>
 
-<div class="container"><%= yield %></div>
+<div class="container">
+  <%= render 'layouts/alerts' %>
+  <%= yield %>
+</div>
 
+<%= javascript_include_tag "application" %>
 </body>
 </html>
