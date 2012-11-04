@@ -1,0 +1,7 @@
+<div class="page-header">
+  <h1><%= report.name %>
+    <% if organization = report.organization %>
+      <small>by <%= link_to organization.name, organization_path(organization) %></small>
+    <% end %>
+  </h1>
+</div>

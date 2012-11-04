@@ -1,3 +1,11 @@
-<div class="page-header">
-  <h1><%= @report.name %> <small>by <%= link_to @report.organization.name, organization_path(@report.organization) %></small></h1>
-</div>
+<%= render 'reports/header', report: @report %>
+
+<p> Are we missing some data? Help us out by <%= link_to 'Submitting a Publication of this report.', new_report_publication_path(@report) %></p>
+
+<h2><%= pluralize(@report.publications.size, 'publication') %></h2>
+<ul>
+  <% @report.publications.each do |publication| %>
+    <li><%= publication.name %> -
+      <%= link_to 'edit', edit_report_publication_path(@report, publication) %></li>
+  <% end %>
+</ul>

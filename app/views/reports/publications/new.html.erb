@@ -1,0 +1,13 @@
+<%= render 'reports/header', report: @report %>
+
+<%= simple_form_for [@report, @publication], html: {class: 'form-horizontal'} do |f| %>
+  <p><strong>1) Publication Details</strong> - these are about the publication itself</p>
+  <%= f.input :name %>
+  <%= f.input :url %>
+  <%= f.input :authors %>
+  <%= f.input :summary %>
+
+  <div class="form-actions">
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  </div>
+<% end %>

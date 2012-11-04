@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121104061732) do
+ActiveRecord::Schema.define(:version => 20121104184612) do
 
   create_table "organizations", :force => true do |t|
     t.string   "name",          :null => false
@@ -28,13 +28,14 @@ ActiveRecord::Schema.define(:version => 20121104061732) do
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug"
 
   create_table "publications", :force => true do |t|
-    t.integer  "report_id",   :null => false
-    t.string   "name",        :null => false
-    t.string   "slug",        :null => false
-    t.string   "url",         :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.text     "description"
+    t.integer  "report_id",  :null => false
+    t.string   "name",       :null => false
+    t.string   "slug",       :null => false
+    t.string   "url",        :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.text     "summary"
+    t.text     "authors"
   end
 
   add_index "publications", ["report_id"], :name => "index_publications_on_report_id"
