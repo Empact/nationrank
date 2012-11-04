@@ -24,6 +24,7 @@ end
 gem 'jquery-rails'
 
 gem 'kaminari'
+gem 'sorcery'
 gem 'strong_parameters'
 
 # To use ActiveModel has_secure_password
