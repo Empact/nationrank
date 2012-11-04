@@ -1,4 +1,6 @@
 class ReportSubmissionsController < ApplicationController
+  before_filter :require_login
+
   def new
     @report = Report.new(params.permit(report: :organization_id))
     if @report.organization
@@ -6,7 +8,6 @@ class ReportSubmissionsController < ApplicationController
     else
       @report.build_organization
     end
-    @report.publications.new
   end
 
   def create

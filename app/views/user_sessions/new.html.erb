@@ -1,12 +1,12 @@
-<% content_for :modal_header do %>
-  Sign In
-<% end %>
+<div class="page-header">
+  <h1>Sign In</h1>
+</div>
 
-<%= form_tag user_session_path, class: 'form', id: 'sign_in' do %>
+<%= form_tag user_session_path, class: 'form' do %>
   <%= text_field_tag :username, nil, placeholder: 'Username' %>
   <%= password_field_tag :password, nil, placeholder: 'Password' %>
-<% end %>
 
-<% content_for :modal_footer do %>
-  <%= submit_form_button 'Sign In', 'sign_in' %>
+  <div class="form-actions">
+    <%= submit_tag 'Sign In', class: 'btn btn-primary' %>
+  </div>
 <% end %>

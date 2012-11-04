@@ -1,5 +1,6 @@
 class OrganizationsController < ApplicationController
   layout 'modal', only: :new
+  before_filter :require_login, only: [:new, :create]
 
   def new
     @organization = Organization.new
