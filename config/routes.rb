@@ -46,6 +46,8 @@ NationRank::Application.routes.draw do
   #     resources :products
   #   end
 
+  resources :reports, only: :index
+
   root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
