@@ -8,6 +8,17 @@
 </head>
 <body>
 
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to 'NationRank', root_path, class: 'brand' %>
+      <ul class="nav">
+        <li><%= link_to 'Reports', reports_path %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <div class="container"><%= yield %></div>
 
 </body>
