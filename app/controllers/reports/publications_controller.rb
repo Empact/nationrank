@@ -7,7 +7,7 @@ class Reports::PublicationsController < ApplicationController
   end
 
   def create
-    @publication = @report.publications.new(publication_params)
+    @publication = @report.publications.new(publication_params.merge(created_by: current_user))
     if @publication.save
       flash.notice = "Thanks for the contribution! Now it's time to add some data."
       redirect_to edit_report_publication_path(@report, @publication)

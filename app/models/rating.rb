@@ -1,6 +1,7 @@
 class Rating < ActiveRecord::Base
   belongs_to :publication
   belongs_to :nation
+  belongs_to :created_by, class_name: 'User'
 
   scope :by_rank, order('rank ASC')
 

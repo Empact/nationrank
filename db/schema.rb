@@ -38,14 +38,15 @@ ActiveRecord::Schema.define(:version => 20121104203118) do
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug"
 
   create_table "publications", :force => true do |t|
-    t.integer  "report_id",  :null => false
-    t.string   "name",       :null => false
-    t.string   "slug",       :null => false
-    t.string   "url",        :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "report_id",     :null => false
+    t.string   "name",          :null => false
+    t.string   "slug",          :null => false
+    t.string   "url"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.text     "summary"
     t.text     "authors"
+    t.integer  "created_by_id", :null => false
   end
 
   add_index "publications", ["report_id"], :name => "index_publications_on_report_id"
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20121104203118) do
     t.integer  "publication_id",                                :null => false
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
+    t.integer  "created_by_id",                                 :null => false
   end
 
   add_index "ratings", ["publication_id", "nation_id"], :name => "index_rankings_on_publication_id_and_nation_id", :unique => true
@@ -87,8 +89,10 @@ ActiveRecord::Schema.define(:version => 20121104203118) do
   add_foreign_key "organizations", "users", :name => "organizations_created_by_id_fk", :column => "created_by_id"
 
   add_foreign_key "publications", "reports", :name => "publications_report_id_fk"
+  add_foreign_key "publications", "users", :name => "publications_created_by_id_fk", :column => "created_by_id"
 
   add_foreign_key "ratings", "nations", :name => "rankings_nation_id_fk"
   add_foreign_key "ratings", "publications", :name => "rankings_publication_id_fk"
+  add_foreign_key "ratings", "users", :name => "ratings_created_by_id_fk", :column => "created_by_id"
 
 end

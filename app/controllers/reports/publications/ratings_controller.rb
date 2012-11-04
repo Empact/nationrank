@@ -9,7 +9,7 @@ class Reports::Publications::RatingsController < ApplicationController
   end
 
   def create
-    @rating = @publication.ratings.new(rating_params)
+    @rating = @publication.ratings.new(rating_params.merge(created_by: current_user))
     if @rating.save
       flash.notice = 'Thanks!'
     else

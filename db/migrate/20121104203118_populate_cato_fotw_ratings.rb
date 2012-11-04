@@ -3,6 +3,15 @@
 class PopulateCatoFotwRatings < ActiveRecord::Migration
   def up
     Rating.delete_all
+    Publication.delete_all
+    remove_column :publications, :created_by_id
+    remove_column :ratings, :created_by_id
+    add_column :publications, :created_by_id, :integer, null: false
+    add_column :ratings, :created_by_id, :integer, null: false
+    add_foreign_key :publications, :users, column: :created_by_id
+    add_foreign_key :ratings, :users, column: :created_by_id
+    change_column_null :publications, :url, true
+
     user = User.find_by_username('Empact')
     org = Organization.find_or_create_by_name('The Cato Institute',
       short_name: 'Cato',
@@ -185,11 +194,15 @@ AUTHORS
       pub.ratings.create!(
         score: score,
         nation_name: nation_name,
-        rank: rank
+        rank: rank,
+        created_by: user
       )
     end
   end
 
   def down
+    Rating.delete_all
+    remove_column :publications, :created_by_id
+    remove_column :ratings, :created_by_id
   end
 end
